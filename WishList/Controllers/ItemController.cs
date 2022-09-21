@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
+using WishList.Models;
 
 namespace WishList.Controllers
 {
@@ -14,6 +15,11 @@ namespace WishList.Controllers
         public ItemController(ApplicationDbContext context)
         {
             _context = context;
+        }
+        public IActionResult Index()
+        {
+            var items = _context.Items.ToList();
+            return View("Index", items);
         }
     }
 }
